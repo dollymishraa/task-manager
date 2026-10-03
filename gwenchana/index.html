@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gwenchana</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap">
+<script src="lib/jszip.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <section id="banner" class="raised">
+    <img id="mood" alt="Chibi companion" src="">
+    <div>
+      <h1>gwenchana</h1>
+      <p id="msg"></p>
+      <div id="bar" class="inset"><i></i></div>
+    </div>
+  </section>
+
+  <form id="quick" class="raised">
+    <input id="qt" placeholder="Quick add: what needs doing?" aria-label="Quick add task" maxlength="120">
+    <button class="pri" type="submit">Add</button>
+  </form>
+
+  <section id="ctl">
+    <input id="q" type="search" placeholder="Search tasks" aria-label="Search tasks">
+    <select id="fs" aria-label="Status"><option value="all">All statuses</option><option value="todo">To Do</option><option value="doing">In Progress</option><option value="done">Completed</option></select>
+    <select id="fc" aria-label="Category"></select>
+    <select id="fp" aria-label="Priority"><option value="all">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select>
+  </section>
+  <div id="act">
+    <button class="pri" id="add">New task</button>
+    <button id="stk">Stickers</button>
+    <button id="exp">Export ZIP</button>
+    <button id="imp">Import sticker images</button>
+    <input id="impFile" type="file" accept="image/*" multiple hidden>
+  </div>
+
+  <section id="board"></section>
+</main>
+
+<aside id="drawer" class="raised" aria-label="Sticker board">
+  <div class="row" style="margin:0 0 10px;justify-content:space-between"><h2 style="margin:0">Sticker board</h2><button id="closeDrawer">Close</button></div>
+  <p id="msCount"></p>
+  <div id="msList"></div>
+  <h3>Sticker library</h3>
+  <div class="grid" id="lib"></div>
+</aside>
+
+<dialog id="taskDlg">
+  <h2 id="dlgTitle">New task</h2>
+  <label for="t">Title</label><input id="t" maxlength="120">
+  <div class="err" id="tErr"></div>
+  <label for="d">Description</label><textarea id="d" rows="2"></textarea>
+  <label for="due">Due date and time</label><input id="due" type="datetime-local">
+  <label for="pr">Priority</label><select id="pr"><option>Low</option><option selected>Medium</option><option>High</option></select>
+  <label for="cat">Category</label><input id="cat" list="cats" placeholder="Pick or type a new one"><datalist id="cats"></datalist>
+  <label>Sticker (optional)</label><div class="grid" id="pick"></div>
+  <div class="row"><button id="cancel" type="button">Cancel</button><button class="pri" id="save" type="button">Save task</button></div>
+</dialog>
+
+<dialog id="expDlg">
+  <h2>Export data</h2>
+  <p>Downloads one ZIP with tasks.json, tasks.csv, summary.md and the stickers your tasks use.</p>
+  <div class="row"><button id="expCancel">Close</button><button class="pri" id="expGo">Download ZIP</button></div>
+</dialog>
+
+<div id="toast" class="raised" role="status"></div>
+
+<script src="stickers-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
